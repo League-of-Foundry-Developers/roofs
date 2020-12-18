@@ -1,3 +1,11 @@
+# 0.1.4
+
+- [Moerill] moved ownership to the League of extraordinary FVTT Developers 
+
+# 0.1.2 & 0.1.3
+
+- [Moerill] compatibility fixes for fvtt 0.7.8+
+
 # 0.1.1 KO Localization update
 - Adds missing string for Korean localization
 
