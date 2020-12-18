@@ -17,13 +17,6 @@ Hooks.once("init", async () => {
 Hooks.once("canvasInit", () => {
   const index = canvas.stage.getChildIndex(canvas.lighting);
   canvas.roofs = canvas.stage.addChildAt(new RoofsLayer(), index);
-  const layers = canvas.layers;
-  layers.push(canvas.roofs);
-  Object.defineProperty(canvas, "layers", {
-    get: function () {
-      return layers;
-    },
-  });
 });
 
 Hooks.on("canvasReady", () => {
@@ -36,6 +29,13 @@ Hooks.on("canvasReady", () => {
 Hooks.once("ready", () => {
   RoofsLayer._patchDrag();
   RoofsLayer._patchSight();
+  const layers = Canvas.layers;
+  layers.roofs = RoofsLayer;
+  Object.defineProperty(Canvas, "layers", {
+    get: function () {
+      return layers;
+    },
+  });
 });
 
 /**
