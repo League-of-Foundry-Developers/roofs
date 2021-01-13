@@ -27,6 +27,6 @@
   ],
   "url": "https://github.com/League-of-Foundry-Developers/roofs",
   "manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/roofs/master/module.json",
-  "download": "https://github.com/League-of-Foundry-Developers/roofs/releases/download/0.1.4/module.zip",
+  "download": "https://github.com/League-of-Foundry-Developers/roofs/releases/download/0.2.0/module.zip",
   "changelog": "https://github.com/League-of-Foundry-Developers/roofs/blob/master/changelog.md"
 }
