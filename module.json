@@ -2,7 +2,7 @@
   "name": "roofs",
   "title": "Roofs & Overhead Tiles",
   "description": "Allows you to promote tiles to a layer above tokens such that they display on top, automatically reveal under the roof when a player token walks under, and hide again when they leave.",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "minimumCoreVersion": "0.7.8",
   "compatibleCoreVersion": "0.7.9",
   "author": ["Vance", "Moerill"],

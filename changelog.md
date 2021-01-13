@@ -1,3 +1,7 @@
+# 0.2.0
+
+- [Moerill] Roofs tint now adapts to the scenes darknesslevel.
+
 # 0.1.4
 
 - [Moerill] moved ownership to the League of extraordinary FVTT Developers 

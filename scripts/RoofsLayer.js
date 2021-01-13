@@ -65,6 +65,8 @@ export default class RoofsLayer extends CanvasLayer {
     canvas.roofs.addChild(container);
     RoofsLayer.setTransform(tile);
     tile.tile.alpha = 0;
+
+    RoofsLayer.setTint(tile.roof);
   }
 
   /**
@@ -105,6 +107,7 @@ export default class RoofsLayer extends CanvasLayer {
     // Otherwise update existing roof
     else if (isRoof) RoofsLayer.setTransform(tile);
     RoofsLayer.setAlphas();
+    RoofsLayer.setTints();
   }
 
   /**
@@ -126,8 +129,9 @@ export default class RoofsLayer extends CanvasLayer {
    */
   static inBounds(tile, token) {
     // Get canvas coords of token, accounting for token center
-    const x = token.data.x + (token.data.width * canvas.grid.size) / 2;
-    const y = token.data.y + (token.data.height * canvas.grid.size) / 2;
+    const x = token.data.x + ((token.data.width || 0.1) * canvas.grid.size) / 2;
+    const y =
+      token.data.y + ((token.data.height || 0.1) * canvas.grid.size) / 2;
     // Get local pos relative to tile
     const local = translatePoint({ x, y }, canvas.stage, tile.roof.sprite);
     // Adjust local pos to account for centered anchor
@@ -214,6 +218,7 @@ export default class RoofsLayer extends CanvasLayer {
         container.alpha = closed;
       }
     });
+
     const t1 = performance.now();
     log(`setAlphas took ${t1 - t0}ms.`);
     canvas.sight.refresh();
@@ -384,5 +389,30 @@ export default class RoofsLayer extends CanvasLayer {
       const val = parseFloat(closedSlider[0].value);
       tile.setFlag("roofs", "closed", val);
     });
+  }
+
+  /**
+   * Sets roof tiles tint to darkness level and color.
+   */
+  static setTints(lightingLayer = canvas.lighting) {
+    const oldDarkness = canvas.roofs?.darknessLevel || -1;
+    const darkness =
+      canvas.lighting.darknessLevel || canvas.scene.data.darkness;
+    // only update when stuff has changed
+    if (Math.abs(oldDarkness - darkness) < 1e-3) return;
+
+    canvas.tiles.placeables.forEach((tile) => {
+      if (!tile.roof?.state) return;
+      RoofsLayer.setTint(tile.roof);
+    });
+    canvas.roofs.darknessLevel = darkness;
+  }
+
+  /**
+   * Sets the tint of a single roof tile.
+   * @param {Object} roof Roof object of a tile.
+   */
+  static setTint(roof) {
+    roof.sprite.tint = canvas.lighting.channels.background.hex;
   }
 }

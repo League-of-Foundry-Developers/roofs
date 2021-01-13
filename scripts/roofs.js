@@ -16,7 +16,7 @@ Hooks.once("init", async () => {
  */
 Hooks.once("canvasInit", () => {
   const index = canvas.stage.getChildIndex(canvas.lighting);
-  canvas.roofs = canvas.stage.addChildAt(new RoofsLayer(), index);
+  canvas.roofs = canvas.stage.addChildAt(new RoofsLayer(), index + 1);
 });
 
 Hooks.on("canvasReady", () => {
@@ -47,5 +47,6 @@ Hooks.on("preDeleteTile", RoofsLayer._onPreDeleteTile);
 Hooks.on("renderTileHUD", RoofsLayer.extendTileHUD);
 Hooks.on("updateToken", RoofsLayer._onUpdateToken);
 Hooks.on("hoverTile", RoofsLayer._onHoverTile);
+Hooks.on("lightingRefresh", RoofsLayer.setTints);
 
 window.RoofsLayer = RoofsLayer;
