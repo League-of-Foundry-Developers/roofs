@@ -58,7 +58,14 @@ export default class RoofsLayer extends CanvasLayer {
     log(`Creating roof ${tile.data._id}`);
     const container = new PIXI.Container();
     const wrapper = new PIXI.Container();
-    const sprite = PIXI.Sprite.from(tile.data.img);
+    const texture;
+    if (/.*\.webm/.test(tile.data.img)) {
+      texture = PIXI.Texture.fromVideo(tile.data.img);
+      texture.baseTexture.resource.source.loop = true;
+    } else {
+      texture = PIXI.Texture.from(tile.data.img);
+    }
+    const sprite = PIXI.Sprite.from(texture);
     wrapper.addChild(sprite);
     container.addChild(wrapper);
     tile.roof = { container, wrapper, sprite };
