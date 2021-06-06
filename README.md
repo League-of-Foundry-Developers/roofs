@@ -1,4 +1,7 @@
 # Roofs
+![Roofs](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Fleague-repo-status%2Fshields-endpoint%2Froofs.json)
+
+
 A FoundryVTT module that allows you to place overhead tiles such as roofs.
 
 ### Features
